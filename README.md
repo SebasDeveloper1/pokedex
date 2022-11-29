@@ -1,0 +1,2 @@
+# pokedex
+Redux project
