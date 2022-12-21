@@ -23,6 +23,11 @@ export default defineConfig({
       services: path.resolve(__dirname, "src/services"),
       styles: path.resolve(__dirname, "src/styles"),
       utils: path.resolve(__dirname, "src/utils"),
+      api: path.resolve(__dirname, "src/api"),
+      actions: path.resolve(__dirname, "src/actions"),
+      reducers: path.resolve(__dirname, "src/reducers"),
+      middlewares: path.resolve(__dirname, "src/middlewares"),
+      slices: path.resolve(__dirname, "src/slices"),
     },
   },
 });
