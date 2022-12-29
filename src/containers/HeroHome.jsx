@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { vars } from "styles/Vars";
 import { FirstTitle, Searcher } from "components/indexComponents";
+import { vars } from "styles/Vars";
 
-export function HeroHome() {
+export function HeroHome({ searchInputValue, setSearchInputValue }) {
   return (
     <StyledHeroHome>
       <FirstTitle textContent="¡Descubre todo lo que el mundo Pokémon tiene para ti!" />
-      <Searcher />
+      <Searcher value={searchInputValue} onChange={setSearchInputValue} />
     </StyledHeroHome>
   );
 }

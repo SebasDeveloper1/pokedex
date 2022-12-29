@@ -1,35 +1,35 @@
-import React, { useEffect } from "react";
-import { getIn } from "immutable";
+import React from "react";
 import styled from "styled-components";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
 import {
   SecondTitle,
   PokemonCard,
   PokemonCardLoading,
 } from "components/indexComponents";
-import { GenericList } from "containers/indexContainers";
+import { GenericList, PaginationSection } from "containers/indexContainers";
 import { vars } from "styles/Vars";
-import { fetchPokemonsWithDetails } from "slices/dataSlice";
 
-export function ListSection() {
-  const pokemons = useSelector((state) => state.data.pokemons, shallowEqual);
-  const loading = useSelector((state) => state.ui.loading);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchPokemonsWithDetails());
-  }, []);
-
+export function ListSection({
+  loadingPokemonsPageList,
+  searchedPokemons,
+  searchInputValue,
+  dataPageList,
+}) {
+  const { count, next, previous, results } = dataPageList;
   return (
     <StyledList>
       <ContainerList>
         <SecondTitle
-          textContent="Resultados para 'Pikachu'"
+          textContent={
+            searchInputValue
+              ? `Resultados para "${searchInputValue.trim()}"`
+              : "Lista de Pokemons"
+          }
           stylesModifier={`margin-block-start: 12px;`}
         />
         <GenericList
           stylesModifier={`border-block-start: 1px solid ${vars["color-secondary"]};`}
         >
-          {loading ? (
+          {loadingPokemonsPageList ? (
             <>
               <PokemonCardLoading />
               <PokemonCardLoading />
@@ -38,15 +38,23 @@ export function ListSection() {
               <PokemonCardLoading />
               <PokemonCardLoading />
             </>
-          ) : (
-            pokemons.map((pokemon) => (
+          ) : searchInputValue ? (
+            searchedPokemons.map((pokemon) => (
               <PokemonCard
                 key={`pokemon__${pokemon.name}`}
                 pokemonData={pokemon}
               />
             ))
+          ) : (
+            results.map((pokemon) => (
+              <PokemonCard
+                key={`pokemon__${pokemon.name}-${pokemon.id}`}
+                pokemonData={pokemon}
+              />
+            ))
           )}
         </GenericList>
+        <PaginationSection count={count} next={next} previous={previous} />
       </ContainerList>
     </StyledList>
   );

@@ -1,5 +1,4 @@
 import React from "react";
-import { getIn } from "immutable";
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { IconContext } from "react-icons";
@@ -10,7 +9,7 @@ import logoImg from "icons/pokeball_icon.svg";
 import { vars } from "styles/Vars";
 
 export function Header() {
-  const colorTheme = useSelector((state) => getIn(state, ["ui", "colorTheme"]));
+  const colorTheme = useSelector((state) => state.ui.colorTheme);
   const dispatch = useDispatch();
 
   const handlerClick = () => {

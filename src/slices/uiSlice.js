@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  colorTheme: "light",
-  loading: true,
+  colorTheme: "dark",
+  loadingPokemonsPageList: true,
+  loadingFullPokemonsList: true,
 };
 
 const uiSlice = createSlice({
@@ -12,12 +13,19 @@ const uiSlice = createSlice({
     toggleTheme: (state, action) => {
       state.colorTheme = action.payload;
     },
-    setLoading: (state, action) => {
-      state.loading = action.payload;
+    setLoadingPokemonsPageList: (state, action) => {
+      state.loadingPokemonsPageList = action.payload;
+    },
+    setLoadingFullPokemonsList: (state, action) => {
+      state.loadingFullPokemonsList = action.payload;
     },
   },
 });
 
-export const { toggleTheme, setLoading } = uiSlice.actions;
+export const {
+  toggleTheme,
+  setLoadingPokemonsPageList,
+  setLoadingFullPokemonsList,
+} = uiSlice.actions;
 
 export default uiSlice.reducer;

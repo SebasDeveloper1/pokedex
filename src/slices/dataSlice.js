@@ -1,24 +1,48 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { getData } from "api/index";
-import { setLoading } from "slices/uiSlice";
+import {
+  setLoadingPokemonsPageList,
+  setLoadingFullPokemonsList,
+} from "slices/uiSlice";
 
 const initialState = {
-  pokemons: [],
+  pokemonsPageList: {},
+  fullPokemonList: [],
 };
 
-export const fetchPokemonsWithDetails = createAsyncThunk(
-  "data/fetchPokemonsWithDetails",
-  async (_, { dispatch }) => {
-    dispatch(setLoading(true));
+const fetchPokemonsWithDetails = async (pokemonList) => {
+  const getPokemonsDetails = await Promise.all(
+    pokemonList.map((pokemon) => getData({ apiUrl: pokemon.url }))
+  );
+
+  return getPokemonsDetails;
+};
+
+export const fecthPokemonsPageList = createAsyncThunk(
+  "data/fecthPokemonsPageList",
+  async ({ apiUrl }, { dispatch }) => {
+    dispatch(setLoadingPokemonsPageList(true));
     const pokemons = await getData({
-      apiUrl: "https://pokeapi.co/api/v2/pokemon?limit=50",
+      apiUrl: apiUrl,
     });
-    const pokemonsRes = pokemons.results;
-    const getPokemonsDetails = await Promise.all(
-      pokemonsRes.map((pokemon) => getData({ apiUrl: pokemon.url }))
-    );
-    dispatch(setPokemons(getPokemonsDetails));
-    dispatch(setLoading(false));
+    const pokemonsRes = await fetchPokemonsWithDetails(pokemons.results);
+
+    dispatch(setPokemonsPageList({ ...pokemons, results: pokemonsRes }));
+    dispatch(setLoadingPokemonsPageList(false));
+  }
+);
+
+export const fecthFullPokemonsList = createAsyncThunk(
+  "data/fecthFullPokemonsList",
+  async (_, { dispatch }) => {
+    dispatch(setLoadingFullPokemonsList(true));
+    const pokemons = await getData({
+      apiUrl: "https://pokeapi.co/api/v2/pokemon?limit=1154&offset=0",
+    });
+    const pokemonsRes = await fetchPokemonsWithDetails(pokemons.results);
+
+    dispatch(setFullPokemonList(pokemonsRes));
+    dispatch(setLoadingFullPokemonsList(false));
   }
 );
 
@@ -26,13 +50,15 @@ const dataSlice = createSlice({
   name: "data",
   initialState,
   reducers: {
-    setPokemons: (state, action) => {
-      state.pokemons = action.payload;
+    setPokemonsPageList: (state, action) => {
+      state.pokemonsPageList = action.payload;
+    },
+    setFullPokemonList: (state, action) => {
+      state.fullPokemonList = action.payload;
     },
   },
 });
-console.log("🚀 ~ file: dataSlice.js:31 ~ dataSlice", dataSlice);
 
-export const { setPokemons } = dataSlice.actions;
+export const { setPokemonsPageList, setFullPokemonList } = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -18,7 +18,7 @@ const StyledGenericList = styled.ul`
   justify-items: center;
   inline-size: 100%;
   block-size: auto;
-  padding-block: 62px 96px;
+  padding-block: 62px;
   list-style: none;
 
   @media ${device.mobileL} {

@@ -4,7 +4,11 @@ import { vars } from "styles/Vars";
 import { device } from "styles/DeviceSize";
 
 export function PokemonCard({ pokemonData }) {
-  const image = pokemonData?.sprites?.other?.dream_world?.front_default;
+  const image =
+    pokemonData?.sprites?.other?.dream_world?.front_default ||
+    pokemonData["sprites"]?.other["official-artwork"]?.front_default ||
+    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+
   const types = pokemonData.types;
   const pokemonTypes = [];
   types.forEach((element) => pokemonTypes.push(element.type.name));
@@ -14,15 +18,7 @@ export function PokemonCard({ pokemonData }) {
       <CardContent>
         <CardContainer>
           <FigureCard>
-            <ImgCard
-              src={
-                image
-                  ? image
-                  : pokemonData["sprites"].other["official-artwork"]
-                      .front_default
-              }
-              alt={pokemonData?.name}
-            />
+            <ImgCard src={image} alt={pokemonData?.name} />
           </FigureCard>
           <CardInfo>
             <TitleCard>{pokemonData?.name}</TitleCard>
@@ -68,9 +64,9 @@ const FigureCard = styled.figure`
   grid-column: 1 / 2;
   inline-size: 150px;
   block-size: 150px;
-  border: 3px solid #e5c531;
+  border: 3px solid rgb(180, 104, 183);
   border-radius: 50%;
-  background-color: rgba(229, 197, 49, 0.5);
+  background-color: rgba(180, 104, 183, 0.5);
 `;
 
 const ImgCard = styled.img`
