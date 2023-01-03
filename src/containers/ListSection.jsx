@@ -54,7 +54,12 @@ export function ListSection({
             ))
           )}
         </GenericList>
-        <PaginationSection count={count} next={next} previous={previous} />
+        <PaginationSection
+          count={count}
+          next={next}
+          previous={previous}
+          loading={loadingPokemonsPageList}
+        />
       </ContainerList>
     </StyledList>
   );

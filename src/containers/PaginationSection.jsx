@@ -7,26 +7,24 @@ import { PrimaryButton } from "components/indexComponents";
 import { vars } from "styles/Vars";
 import { device } from "styles/DeviceSize";
 
-export function PaginationSection({ count, next, previous }) {
-  console.log(
-    "🚀 ~ file: PaginationSection.jsx:11 ~ PaginationSection ~ next",
-    next
-  );
+export function PaginationSection({ count, next, previous, loading }) {
   const [numPage, setNumPage] = useState(1);
   const dispach = useDispatch();
   const totalPages = Math.ceil(count / 20);
 
   const onClickHandler = (link, type) => {
-    dispach(fecthPokemonsPageList({ apiUrl: link }));
-    if (type === "previous") {
-      if (numPage > 1) {
-        setNumPage(numPage - 1);
-      }
-    } else if (type === "next") {
-      if (numPage < totalPages) {
+    if (!loading) {
+      dispach(fecthPokemonsPageList({ apiUrl: link }));
+      if (type === "previous") {
+        if (numPage > 1) {
+          setNumPage(numPage - 1);
+        }
+      } else if (type === "next") {
+        if (numPage < totalPages) {
+          setNumPage(numPage + 1);
+        }
         setNumPage(numPage + 1);
       }
-      setNumPage(numPage + 1);
     }
   };
 
