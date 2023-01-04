@@ -3,7 +3,7 @@ import { IconContext } from "react-icons";
 import styled from "styled-components";
 import { vars } from "styles/Vars";
 
-export function PrimaryButton({ link, onClick, children }) {
+export function RadiusButton({ link, onClick, children }) {
   if (link) {
     return (
       <StyleButton type="button" onClick={onClick}>

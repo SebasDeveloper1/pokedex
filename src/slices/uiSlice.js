@@ -1,17 +1,28 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
+
+let browserTheme;
+window.matchMedia('(prefers-color-scheme: dark)').matches
+  ? (browserTheme = 'dark')
+  : 'light';
+
+/* Checking if there is a theme in localStorage, if not, it will use the browser theme, if not, it will
+use the default theme. */
+const localStorageTheme =
+  localStorage.getItem('SD_POKEDEX_THEME') || browserTheme || 'light';
 
 const initialState = {
-  colorTheme: "dark",
+  colorTheme: localStorageTheme,
   loadingPokemonsPageList: true,
   loadingFullPokemonsList: true,
 };
 
 const uiSlice = createSlice({
-  name: "ui",
+  name: 'ui',
   initialState,
   reducers: {
     toggleTheme: (state, action) => {
       state.colorTheme = action.payload;
+      localStorage.setItem('SD_POKEDEX_THEME', action.payload);
     },
     setLoadingPokemonsPageList: (state, action) => {
       state.loadingPokemonsPageList = action.payload;

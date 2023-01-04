@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { Header, Footer } from "components/indexComponents";
 import { HeroHome, ListSection } from "containers/indexContainers";
 import { fecthPokemonsPageList, fecthFullPokemonsList } from "slices/dataSlice";
 import { usePokemonSearch } from "hooks/usePokemonSearch";
@@ -20,6 +19,7 @@ export function HomePage() {
   const loadingPokemonsPageList = useSelector(
     (state) => state.ui.loadingPokemonsPageList
   );
+
   const { searchValue, setSearchValue, searchedPokemons } = usePokemonSearch({
     pokemonsList: fullPokemonsList,
   });
@@ -34,7 +34,6 @@ export function HomePage() {
 
   return (
     <StyledHomePage>
-      <Header />
       <HeroHome
         searchInputValue={searchValue}
         setSearchInputValue={setSearchValue}
@@ -45,7 +44,6 @@ export function HomePage() {
         searchedPokemons={searchedPokemons}
         searchInputValue={searchValue}
       />
-      <Footer />
     </StyledHomePage>
   );
 }

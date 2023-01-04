@@ -1,9 +1,9 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { getData } from "api/index";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { getData } from 'api/index';
 import {
   setLoadingPokemonsPageList,
   setLoadingFullPokemonsList,
-} from "slices/uiSlice";
+} from 'slices/uiSlice';
 
 const initialState = {
   pokemonsPageList: {},
@@ -19,7 +19,7 @@ const fetchPokemonsWithDetails = async (pokemonList) => {
 };
 
 export const fecthPokemonsPageList = createAsyncThunk(
-  "data/fecthPokemonsPageList",
+  'data/fecthPokemonsPageList',
   async ({ apiUrl }, { dispatch }) => {
     dispatch(setLoadingPokemonsPageList(true));
     const pokemons = await getData({
@@ -33,11 +33,11 @@ export const fecthPokemonsPageList = createAsyncThunk(
 );
 
 export const fecthFullPokemonsList = createAsyncThunk(
-  "data/fecthFullPokemonsList",
+  'data/fecthFullPokemonsList',
   async (_, { dispatch }) => {
     dispatch(setLoadingFullPokemonsList(true));
     const pokemons = await getData({
-      apiUrl: "https://pokeapi.co/api/v2/pokemon?limit=1154&offset=0",
+      apiUrl: 'https://pokeapi.co/api/v2/pokemon?limit=898&offset=0',
     });
     const pokemonsRes = await fetchPokemonsWithDetails(pokemons.results);
 
@@ -47,7 +47,7 @@ export const fecthFullPokemonsList = createAsyncThunk(
 );
 
 const dataSlice = createSlice({
-  name: "data",
+  name: 'data',
   initialState,
   reducers: {
     setPokemonsPageList: (state, action) => {

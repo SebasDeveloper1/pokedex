@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
-import { useDispatch } from "react-redux";
-import { fecthPokemonsPageList } from "slices/dataSlice";
-import { PrimaryButton } from "components/indexComponents";
-import { vars } from "styles/Vars";
-import { device } from "styles/DeviceSize";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { FaArrowRight, FaArrowLeft } from 'react-icons/fa';
+import { useDispatch } from 'react-redux';
+import { fecthPokemonsPageList } from 'slices/dataSlice';
+import { RadiusButton } from 'components/indexComponents';
+import { vars } from 'styles/Vars';
+import { device } from 'styles/DeviceSize';
 
 export function PaginationSection({ count, next, previous, loading }) {
   const [numPage, setNumPage] = useState(1);
@@ -15,11 +15,11 @@ export function PaginationSection({ count, next, previous, loading }) {
   const onClickHandler = (link, type) => {
     if (!loading) {
       dispach(fecthPokemonsPageList({ apiUrl: link }));
-      if (type === "previous") {
+      if (type === 'previous') {
         if (numPage > 1) {
           setNumPage(numPage - 1);
         }
-      } else if (type === "next") {
+      } else if (type === 'next') {
         if (numPage < totalPages) {
           setNumPage(numPage + 1);
         }
@@ -31,26 +31,26 @@ export function PaginationSection({ count, next, previous, loading }) {
   return (
     <StyledPagination>
       <Container>
-        <PrimaryButton
+        <RadiusButton
           link={previous}
           onClick={() => {
-            onClickHandler(previous, "previous");
+            onClickHandler(previous, 'previous');
           }}
         >
           <FaArrowLeft />
-        </PrimaryButton>
+        </RadiusButton>
         <PageInfo>
           <CurrentPage>{`${numPage} `}</CurrentPage>
           <MaxPages>{`de ${totalPages}`}</MaxPages>
         </PageInfo>
-        <PrimaryButton
+        <RadiusButton
           link={next}
           onClick={() => {
-            onClickHandler(next, "next");
+            onClickHandler(next, 'next');
           }}
         >
           <FaArrowRight />
-        </PrimaryButton>
+        </RadiusButton>
       </Container>
     </StyledPagination>
   );
@@ -87,20 +87,20 @@ const CurrentPage = styled.span`
   inline-size: 40px;
   block-size: 40px;
   border-radius: 50%;
-  font-size: ${vars["p1-sm"]};
-  font-weight: ${vars["font-weight-text2"]};
-  color: ${vars["color-text-light-1"]};
-  background-color: ${vars["color-secondary-opacity"]};
+  font-size: ${vars['p1-sm']};
+  font-weight: ${vars['font-weight-text2']};
+  color: ${vars['color-text-light-1']};
+  background-color: ${vars['color-secondary-opacity']};
   @media ${device.tablet} {
-    font-size: ${vars["p1-lg"]};
+    font-size: ${vars['p1-lg']};
   }
 `;
 
 const MaxPages = styled.span`
-  font-size: ${vars["p1-sm"]};
-  font-weight: ${vars["font-weight-text1"]};
+  font-size: ${vars['p1-sm']};
+  font-weight: ${vars['font-weight-text1']};
   color: ${(props) => props.theme.txt1};
   @media ${device.tablet} {
-    font-size: ${vars["p1-lg"]};
+    font-size: ${vars['p1-lg']};
   }
 `;

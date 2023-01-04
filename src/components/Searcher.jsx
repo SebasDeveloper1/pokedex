@@ -1,9 +1,9 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { FaSearch } from "react-icons/fa";
-import { IconContext } from "react-icons";
-import styled from "styled-components";
-import { vars } from "styles/Vars";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { FaSearch } from 'react-icons/fa';
+import { IconContext } from 'react-icons';
+import styled from 'styled-components';
+import { vars } from 'styles/Vars';
 
 export function Searcher({ value, onChange }) {
   const loading = useSelector((state) => state.ui.loadingFullPokemonsList);
@@ -25,8 +25,8 @@ export function Searcher({ value, onChange }) {
         <SearchIcon>
           <IconContext.Provider
             value={{
-              color: vars["color-text-accent-1"],
-              size: "2.4rem",
+              color: vars['color-text-accent-1'],
+              size: '2.4rem',
             }}
           >
             <FaSearch />
@@ -35,7 +35,7 @@ export function Searcher({ value, onChange }) {
       </StyledSearcher>
       <SearchLoadingMessage>
         {loading
-          ? "Cargando lista completa de pokemons, espera por favor..."
+          ? 'Cargando lista completa de pokemons, espera por favor...'
           : null}
       </SearchLoadingMessage>
     </>
@@ -51,7 +51,7 @@ const StyledSearcher = styled.div`
   margin-block-end: 24px;
   border-radius: 24px;
   background-color: ${(props) => props.theme?.bg4};
-  filter: drop-shadow(0px 0px 1px ${vars["color-shadow-1"]});
+  filter: drop-shadow(0px 0px 1px ${vars['color-shadow-1']});
 `;
 
 const SearchInput = styled.input`
@@ -59,7 +59,7 @@ const SearchInput = styled.input`
   inline-size: 100%;
   block-size: 100%;
   padding: 4px 20px;
-  font-weight: ${vars["font-weight-text2"]};
+  font-weight: ${vars['font-weight-text2']};
   color: ${(props) => props.theme?.txt4};
   border: none;
   background: transparent;
@@ -69,7 +69,7 @@ const SearchInput = styled.input`
   }
 
   &::placeholder {
-    color: ${(props) => props.theme?.txt6};
+    color: ${(props) => props.theme?.txtAccent2};
   }
 `;
 

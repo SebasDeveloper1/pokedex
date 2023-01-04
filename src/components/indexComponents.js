@@ -1,7 +1,7 @@
 import { Header } from "./Header";
 import { FirstTitle } from "./FirstTitle";
 import { SecondTitle } from "./SecondTitle";
-import { PrimaryButton } from "./PrimaryButton";
+import { RadiusButton } from "./RadiusButton";
 import { Searcher } from "./Searcher";
 import { PokemonCard } from "./PokemonCard";
 import { PokemonCardLoading } from "./PokemonCardLoading";
@@ -11,7 +11,7 @@ export {
   Header,
   FirstTitle,
   SecondTitle,
-  PrimaryButton,
+  RadiusButton,
   Searcher,
   PokemonCard,
   PokemonCardLoading,
