@@ -1,40 +1,43 @@
-import React from "react";
-import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { IconContext } from "react-icons";
-import { FaSun, FaMoon } from "react-icons/fa";
-import { rgba } from "polished";
-import { toggleTheme } from "slices/uiSlice";
-import logoImg from "icons/pokeball_icon.svg";
-import { vars } from "styles/Vars";
+import React from 'react';
+import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { IconContext } from 'react-icons';
+import { FaSun, FaMoon } from 'react-icons/fa';
+import { rgba } from 'polished';
+import { toggleTheme } from 'slices/uiSlice';
+import logoImg from 'icons/pokeball_icon.svg';
+import { vars } from 'styles/Vars';
 
 export function Header() {
   const colorTheme = useSelector((state) => state.ui.colorTheme);
   const dispatch = useDispatch();
 
   const handlerClick = () => {
-    if (colorTheme === "dark") {
-      dispatch(toggleTheme("light"));
+    if (colorTheme === 'dark') {
+      dispatch(toggleTheme('light'));
     } else {
-      dispatch(toggleTheme("dark"));
+      dispatch(toggleTheme('dark'));
     }
   };
 
   return (
     <StyledHeader>
       <ContainerHeader>
-        <ContainerLogo>
-          <LogoImg src={logoImg} alt="logo pokédex" />
-          <LogoTxt>Pokédex</LogoTxt>
-        </ContainerLogo>
+        <Link to="/">
+          <ContainerLogo>
+            <LogoImg src={logoImg} alt="logo pokédex" />
+            <LogoTxt>Pokédex</LogoTxt>
+          </ContainerLogo>
+        </Link>
         <ThemeBtn type="button" onClick={handlerClick}>
           <IconContext.Provider
             value={{
-              color: vars["color-text-accent-1"],
-              size: "3rem",
+              color: vars['color-text-accent-1'],
+              size: '3rem',
             }}
           >
-            {colorTheme === "dark" ? <FaSun /> : <FaMoon />}
+            {colorTheme === 'dark' ? <FaSun /> : <FaMoon />}
           </IconContext.Provider>
         </ThemeBtn>
       </ContainerHeader>
@@ -43,15 +46,11 @@ export function Header() {
 }
 
 const StyledHeader = styled.header`
-  position: absolute;
-  top: 0;
-  left: 0;
   display: grid;
   justify-items: center;
-  align-content: end;
   inline-size: 100%;
   block-size: 70px;
-  z-index: 2;
+  background-color: ${vars['color-dark-2']};
 `;
 
 const ContainerHeader = styled.div`
@@ -89,6 +88,6 @@ const ThemeBtn = styled.button`
   inline-size: 50px;
   block-size: 50px;
   border-radius: 50%;
-  background: ${rgba(vars["color-text-light-1"], 0.1)};
+  background: ${rgba(vars['color-text-light-1'], 0.1)};
   cursor: pointer;
 `;

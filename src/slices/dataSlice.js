@@ -37,7 +37,7 @@ export const fecthFullPokemonsList = createAsyncThunk(
   async (_, { dispatch }) => {
     dispatch(setLoadingFullPokemonsList(true));
     const pokemons = await getData({
-      apiUrl: 'https://pokeapi.co/api/v2/pokemon?limit=898&offset=0',
+      apiUrl: 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0',
     });
     const pokemonsRes = await fetchPokemonsWithDetails(pokemons.results);
 

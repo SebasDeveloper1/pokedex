@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import logoBasic from "images/sebas-developer.logo.png";
-import { vars } from "styles/Vars";
+import React from 'react';
+import styled from 'styled-components';
+import logoBasic from 'images/sebas-developer.logo.png';
+import { vars } from 'styles/Vars';
 
 export function Footer() {
   return (
@@ -20,8 +20,7 @@ const StyledFooter = styled.footer`
   place-items: center;
   inline-size: 100%;
   block-size: 240px;
-  margin-block-start: 32px;
-  background-color: ${vars["color-dark-2"]};
+  background-color: ${vars['color-dark-2']};
 `;
 
 const Container = styled.div`
@@ -36,9 +35,9 @@ const Logo = styled.img`
 
 const Title = styled.p`
   margin-block: 12px;
-  color: ${vars["color-primary"]};
+  color: ${vars['color-primary']};
 `;
 
 const Subtitle = styled.p`
-  color: ${vars["color-text-light-6"]};
+  color: ${vars['color-text-light-6']};
 `;

@@ -60,6 +60,7 @@ const StyledPagination = styled.section`
   display: grid;
   place-items: center;
   inline-size: 100%;
+  margin-block-end: 32px;
 `;
 
 const Container = styled.div`

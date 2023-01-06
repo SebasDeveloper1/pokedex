@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import styled from "styled-components";
-import { useSelector, useDispatch, shallowEqual } from "react-redux";
-import { HeroHome, ListSection } from "containers/indexContainers";
-import { fecthPokemonsPageList, fecthFullPokemonsList } from "slices/dataSlice";
-import { usePokemonSearch } from "hooks/usePokemonSearch";
+import React, { useEffect } from 'react';
+import styled from 'styled-components';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
+import { HeroHome, ListSection } from 'containers/indexContainers';
+import { fecthPokemonsPageList, fecthFullPokemonsList } from 'slices/dataSlice';
+import { usePokemonSearch } from 'hooks/usePokemonSearch';
 
 export function HomePage() {
   const pokemonsPageList = useSelector(
@@ -27,8 +27,10 @@ export function HomePage() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(
-      fecthPokemonsPageList({ apiUrl: "https://pokeapi.co/api/v2/pokemon" })
+      fecthPokemonsPageList({ apiUrl: 'https://pokeapi.co/api/v2/pokemon' })
     );
+  }, []);
+  useEffect(() => {
     dispatch(fecthFullPokemonsList());
   }, []);
 

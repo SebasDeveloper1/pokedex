@@ -1,13 +1,13 @@
-import React from "react";
-import styled from "styled-components";
-import { vars } from "styles/Vars";
-import { device } from "styles/DeviceSize";
+import React from 'react';
+import styled from 'styled-components';
+import { vars } from 'styles/Vars';
+import { device } from 'styles/DeviceSize';
 
-export function PokemonCard({ pokemonData }) {
+export function PokemonCard({ pokemonData, onClick }) {
   const image =
     pokemonData?.sprites?.other?.dream_world?.front_default ||
-    pokemonData["sprites"]?.other["official-artwork"]?.front_default ||
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png";
+    pokemonData['sprites']?.other['official-artwork']?.front_default ||
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/1024px-No_image_available.svg.png';
 
   const types = pokemonData.types;
   const pokemonTypes = [];
@@ -15,14 +15,14 @@ export function PokemonCard({ pokemonData }) {
 
   return (
     <StyledCard>
-      <CardContent>
+      <CardContent onClick={onClick}>
         <CardContainer>
           <FigureCard>
             <ImgCard src={image} alt={pokemonData?.name} />
           </FigureCard>
           <CardInfo>
             <TitleCard>{pokemonData?.name}</TitleCard>
-            <CardType>{pokemonTypes.join(" / ")}</CardType>
+            <CardType>{pokemonTypes.join(' / ')}</CardType>
           </CardInfo>
         </CardContainer>
       </CardContent>
@@ -90,13 +90,13 @@ const CardType = styled.p`
   display: inline-block;
   max-inline-size: 100%;
   padding: 4px 12px;
-  background-color: ${vars["color-secondary"]};
+  background-color: ${vars['color-secondary']};
   border-radius: 24px;
-  font-size: ${vars["p1-sm"]};
-  font-weight: ${vars["font-weight-text2"]};
-  color: ${vars["color-text-light-1"]};
+  font-size: ${vars['p1-sm']};
+  font-weight: ${vars['font-weight-text2']};
+  color: ${vars['color-text-light-1']};
   text-transform: capitalize;
   @media ${device.tablet} {
-    font-size: ${vars["p1-lg"]};
+    font-size: ${vars['p1-lg']};
   }
 `;

@@ -1,12 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 import {
   SecondTitle,
   PokemonCard,
   PokemonCardLoading,
-} from "components/indexComponents";
-import { GenericList, PaginationSection } from "containers/indexContainers";
-import { vars } from "styles/Vars";
+} from 'components/indexComponents';
+import { GenericList, PaginationSection } from 'containers/indexContainers';
+import { vars } from 'styles/Vars';
 
 export function ListSection({
   loadingPokemonsPageList,
@@ -15,6 +16,11 @@ export function ListSection({
   dataPageList,
 }) {
   const { count, next, previous, results } = dataPageList;
+  const navigate = useNavigate();
+
+  const onClickHandler = (pokemon) => {
+    navigate(`/details/${pokemon}`);
+  };
   return (
     <StyledList>
       <ContainerList>
@@ -22,12 +28,12 @@ export function ListSection({
           textContent={
             searchInputValue
               ? `Resultados para "${searchInputValue.trim()}"`
-              : "Lista de Pokemons"
+              : 'Lista de Pokemons'
           }
           stylesModifier={`margin-block-start: 12px;`}
         />
         <GenericList
-          stylesModifier={`border-block-start: 1px solid ${vars["color-secondary"]};`}
+          stylesModifier={`border-block-start: 1px solid ${vars['color-secondary']};`}
         >
           {loadingPokemonsPageList ? (
             <>
@@ -41,15 +47,21 @@ export function ListSection({
           ) : searchInputValue ? (
             searchedPokemons.map((pokemon) => (
               <PokemonCard
-                key={`pokemon__${pokemon.name}`}
+                key={`pokemon__${pokemon?.name}`}
                 pokemonData={pokemon}
+                onClick={() => {
+                  onClickHandler(pokemon?.name);
+                }}
               />
             ))
           ) : (
             results.map((pokemon) => (
               <PokemonCard
-                key={`pokemon__${pokemon.name}-${pokemon.id}`}
+                key={`pokemon__${pokemon?.name}-${pokemon.id}`}
                 pokemonData={pokemon}
+                onClick={() => {
+                  onClickHandler(pokemon?.name);
+                }}
               />
             ))
           )}
@@ -80,8 +92,8 @@ const StyledList = styled.section`
     left: calc(50% - 50px);
     inline-size: 100px;
     block-size: 4px;
-    content: "";
-    background-color: ${vars["color-secondary"]};
+    content: '';
+    background-color: ${vars['color-secondary']};
   }
 `;
 
