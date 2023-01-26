@@ -13,7 +13,6 @@ const localStorageTheme =
 const initialState = {
   colorTheme: localStorageTheme,
   loadingPokemonsPageList: true,
-  loadingFullPokemonsList: true,
 };
 
 const uiSlice = createSlice({
@@ -27,16 +26,9 @@ const uiSlice = createSlice({
     setLoadingPokemonsPageList: (state, action) => {
       state.loadingPokemonsPageList = action.payload;
     },
-    setLoadingFullPokemonsList: (state, action) => {
-      state.loadingFullPokemonsList = action.payload;
-    },
   },
 });
 
-export const {
-  toggleTheme,
-  setLoadingPokemonsPageList,
-  setLoadingFullPokemonsList,
-} = uiSlice.actions;
+export const { toggleTheme, setLoadingPokemonsPageList } = uiSlice.actions;
 
 export default uiSlice.reducer;

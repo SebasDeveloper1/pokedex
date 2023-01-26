@@ -9,28 +9,26 @@ import {
 import { GenericList, PaginationSection } from 'containers/indexContainers';
 import { vars } from 'styles/Vars';
 
-export function ListSection({
-  loadingPokemonsPageList,
-  searchedPokemons,
-  searchInputValue,
-  dataPageList,
-}) {
+export function ListSection({ loadingPokemonsPageList, dataPageList }) {
   const { count, next, previous, results } = dataPageList;
   const navigate = useNavigate();
 
   const onClickHandler = (pokemon) => {
     navigate(`/details/${pokemon}`);
   };
+
   return (
     <StyledList>
       <ContainerList>
         <SecondTitle
-          textContent={
-            searchInputValue
-              ? `Resultados para "${searchInputValue.trim()}"`
-              : 'Lista de Pokemons'
-          }
-          stylesModifier={`margin-block-start: 12px;`}
+          textContent="Lista de Pokemons"
+          stylesModifier={`margin-block-start: 12px; text-align: center;`}
+        />
+        <PaginationSection
+          count={count}
+          next={next}
+          previous={previous}
+          loading={loadingPokemonsPageList}
         />
         <GenericList
           stylesModifier={`border-block-start: 1px solid ${vars['color-secondary']};`}
@@ -44,16 +42,6 @@ export function ListSection({
               <PokemonCardLoading />
               <PokemonCardLoading />
             </>
-          ) : searchInputValue ? (
-            searchedPokemons.map((pokemon) => (
-              <PokemonCard
-                key={`pokemon__${pokemon?.name}`}
-                pokemonData={pokemon}
-                onClick={() => {
-                  onClickHandler(pokemon?.name);
-                }}
-              />
-            ))
           ) : (
             results.map((pokemon) => (
               <PokemonCard
@@ -66,12 +54,6 @@ export function ListSection({
             ))
           )}
         </GenericList>
-        <PaginationSection
-          count={count}
-          next={next}
-          previous={previous}
-          loading={loadingPokemonsPageList}
-        />
       </ContainerList>
     </StyledList>
   );
