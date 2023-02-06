@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { keyframes } from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 
 export function PokemonCardLoading() {
   return <StyledCard></StyledCard>;
@@ -21,7 +21,8 @@ const loading = keyframes`
 const StyledCard = styled.div`
   overflow: hidden;
   inline-size: 100%;
-  block-size: 170px;
+  block-size: 100%;
+  min-block-size: 170px;
   border-radius: 8px;
   /* background-color: ${(props) => props.theme?.bg2}; */
   background: linear-gradient(
