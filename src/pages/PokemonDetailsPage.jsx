@@ -90,23 +90,31 @@ export function PokemonDetailsPage() {
             <FeaturesContainer>
               <Feacture>
                 <DescFeature>{`${weightPokemon} Kg`}</DescFeature>
-                <TitleFeature>Weight</TitleFeature>
+                <TitleFeature>Peso</TitleFeature>
               </Feacture>
               <Feacture>
                 <DescFeature>{`${baseExperiencePokemon} Pts`}</DescFeature>
-                <TitleFeature>Base Experience</TitleFeature>
+                <TitleFeature>Experiencia básica</TitleFeature>
               </Feacture>
               <Feacture>
                 <DescFeature>{`${heightPokemon} m`}</DescFeature>
-                <TitleFeature>Height</TitleFeature>
+                <TitleFeature>Altura</TitleFeature>
               </Feacture>
               <Feacture>
                 <DescFeature>{pokemonTypes.join(', ')}</DescFeature>
-                <TitleFeature>Types</TitleFeature>
+                {pokemonTypes.length > 1 ? (
+                  <TitleFeature>Tipos</TitleFeature>
+                ) : (
+                  <TitleFeature>Tipo</TitleFeature>
+                )}
               </Feacture>
               <Feacture>
                 <DescFeature>{pokemonAbilities.join(', ')}</DescFeature>
-                <TitleFeature>Abilities</TitleFeature>
+                {pokemonAbilities.length > 1 ? (
+                  <TitleFeature>Habilidades</TitleFeature>
+                ) : (
+                  <TitleFeature>Habilidades</TitleFeature>
+                )}
               </Feacture>
             </FeaturesContainer>
           </InfoContainer>
