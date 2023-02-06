@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
+import { PokemonCardLoading } from 'components/indexComponents';
 import { getPokemonDetails } from 'utils/getPokemonDetails';
 import { vars } from 'styles/Vars';
 import { device } from 'styles/DeviceSize';
@@ -73,7 +74,9 @@ export function PokemonDetailsPage() {
   return (
     <>
       {loading ? (
-        <p>loading</p>
+        <LoadinContainer>
+          <PokemonCardLoading />
+        </LoadinContainer>
       ) : (
         <StyledDetailsPage style={styles(pokemonTypes, 50)}>
           <ImageContainer>
@@ -112,6 +115,13 @@ export function PokemonDetailsPage() {
     </>
   );
 }
+
+const LoadinContainer = styled.div`
+  inline-size: 90%;
+  max-inline-size: 1366px;
+  block-size: 500px;
+  margin: 62px auto;
+`;
 
 const StyledDetailsPage = styled.main`
   display: grid;
